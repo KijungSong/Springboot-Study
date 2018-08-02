@@ -1,6 +1,7 @@
 package daebaksong.org.firstProject;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +37,12 @@ public class HelloController {
         String name = request.getParameter("name");
         String age = request.getParameter("age");
         return "hello "+ name + " , "+age;
+    }
+
+    // /hello2?name=kim&age=5
+    // DTO로 받는 방식! 파라미터 이름과 DTO의 프로퍼티 이름이 같아야한다!
+    @GetMapping("/hello4")
+    public String sayHello4(@ModelAttribute HelloDTO helloDTO) {
+        return "hello "+ helloDTO.getName() + " , "+ helloDTO.getAge();
     }
 }
