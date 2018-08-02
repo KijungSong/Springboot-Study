@@ -1,9 +1,6 @@
 package daebaksong.org.firstProject;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,5 +41,29 @@ public class HelloController {
     @GetMapping("/hello4")
     public String sayHello4(@ModelAttribute HelloDTO helloDTO) {
         return "hello "+ helloDTO.getName() + " , "+ helloDTO.getAge();
+    }
+
+    @PostMapping("/hello5")
+    public String sayHello5() {
+        return "hello";
+    }
+
+    @PostMapping("/hello6")
+    public String sayHello6(@RequestParam(name ="name", required = true)String name,
+                            @RequestParam(name="age", required = false, defaultValue = "0")int age) {
+        return "hello "+ name + " , "+age;
+    }
+
+    @PostMapping("/hello7")
+    public String sayHello7(@RequestBody HelloDTO helloDTO) {
+        return "hello "+ helloDTO.getName() + " , "+ helloDTO.getAge();
+    }
+
+    @GetMapping("/hello8")
+    public HelloDTO sayHello8() {
+        HelloDTO helloDTO = new HelloDTO();
+        helloDTO.setName("lee");
+        helloDTO.setAge(10);
+        return helloDTO;
     }
 }
