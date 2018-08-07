@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberApiController {
 
     @GetMapping
-    public String members(MemberInfo nemberInfo) {
+    public String members(MemberInfo memberInfo) {
         // memberInfo에 id=1, email= 이메일주소를 셋팅에서 넣어주도록 하고 싶다.
         System.out.println("/api/members call!");
+        System.out.println("memberInfo id:" + memberInfo.getId()+ " email:" + memberInfo.getEmail());
         return "members";
     }
 }
