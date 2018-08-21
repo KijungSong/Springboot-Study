@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,10 +21,11 @@ public class Member {
     private String passwd;
     private LocalDateTime regdate;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<MemberRole> memberRoles;
+    // mappedBy = "member"를 설정안해주면 다:다 관계로 보고 매핑하는 테이블을 추가로 생성한다.
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<MemberRole> memberRoles = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private Set<Board> boards;
 
     // helper method
