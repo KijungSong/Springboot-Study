@@ -19,6 +19,13 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public Member addMember(Member member) {
         // member의 암호를 암호화한다. (Controller에서 암호화를 할지, Service에서 할지는 생각해보자)
+        PasswordEncoder passwordEncoder =
+                PasswordEncoderFactories
+                        .createDelegatingPasswordEncoder();
+
+        String encodePasswd = passwordEncoder.encode(member.getPasswd());
+        System.out.println("encode: " + encodePasswd);
+        member.setPasswd(encodePasswd);
         // memberRole을 member에 추가한다.
         // member를 저장한다.
         // member를 리턴한다.
