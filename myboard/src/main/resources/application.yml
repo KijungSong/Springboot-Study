@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    initialization-mode: always # 이 설정이 있어야지만 schema.xml(?), data.sql 읽어서 초기화 한다.
+  h2:
+    console:
+      enabled: true
+#server:
+#  port: 9999
