@@ -1,6 +1,7 @@
 package com.daebaksong.myboard.service.impl;
 
 import com.daebaksong.myboard.domin.Member;
+import com.daebaksong.myboard.domin.MemberRole;
 import com.daebaksong.myboard.repository.MemberRepository;
 import com.daebaksong.myboard.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class MemberServiceImpl implements MemberService {
     //org.springframework.transaction.annotation.Transactional, 하나의 트랜잭션 단위로 실행 실행중 Exception이 발생하면 롤백.
     @Transactional
     public Member addMember(Member member) {
-        // member의 암호를 암호화한다. (Controller에서 암호화를 할지, Service에서 할지는 생각해보자)
+        // 1.member의 암호를 암호화한다. (Controller에서 암호화를 할지, Service에서 할지는 생각해보자)
         PasswordEncoder passwordEncoder =
                 PasswordEncoderFactories
                         .createDelegatingPasswordEncoder();
@@ -26,10 +27,17 @@ public class MemberServiceImpl implements MemberService {
         String encodePasswd = passwordEncoder.encode(member.getPasswd());
         System.out.println("encode: " + encodePasswd);
         member.setPasswd(encodePasswd);
-        // memberRole을 member에 추가한다.
-        // member를 저장한다.
-        // member를 리턴한다.
-        return null;
+        // 2.memberRole을 member에 추가한다.
+        MemberRole memberRole = new MemberRole();
+        memberRole.setName("USER");
+        member.addMemberRole(memberRole); // helper method 이용
+
+        // 3.member를 저장한다.
+        // member가 영속성이 부여될 때 MemberRole도 영속성이 부여되야 한다.
+        member = memberRepository.save(member);
+
+        // 4.member를 리턴한다.
+        return member;
     }
 
     @Override

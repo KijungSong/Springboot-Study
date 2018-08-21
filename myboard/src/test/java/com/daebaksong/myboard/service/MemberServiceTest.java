@@ -17,12 +17,15 @@ public class MemberServiceTest {
 
     @Test
     public void testAddMember() throws Exception {
+        System.out.println("-------------------------");
         Member member = new Member();
         member.setName("song");
         member.setRegdate(LocalDateTime.now());
         member.setEmail("skj4522@gmail.com");
         member.setPasswd("1234");
         member = memberService.addMember(member);
+        System.out.println(member.getId());
+        System.out.println("-------------------------");
 
     }
 
