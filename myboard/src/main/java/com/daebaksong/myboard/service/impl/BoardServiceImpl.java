@@ -6,6 +6,8 @@ import com.daebaksong.myboard.repository.BoardRepository;
 import com.daebaksong.myboard.repository.MemberRepository;
 import com.daebaksong.myboard.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +29,9 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Board> getBoard(int page) {
-        return null;
+    public Page<Board> getBoard(int page) {
+        PageRequest pageRequest = PageRequest.of(page - 1, 3);
+        Page<Board> boardPage = boardRepository.findAllByOrderByIdDesc(pageRequest);
+        return boardPage;
     }
 }
