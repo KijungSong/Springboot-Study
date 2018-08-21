@@ -6,11 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class MemberServiceTest {
     @Autowired
     MemberService memberService;
@@ -29,5 +31,14 @@ public class MemberServiceTest {
 
     }
 
+    @Test
+    public void testGetMemberByEmail() throws Exception {
+        System.out.println("-------------------------");
+        Member member = memberService.getMember("skj4522@gmail.com");
+        System.out.println(member.getId());
+        System.out.println(member.getName());
+        System.out.println(member.getMemberRoles());
+        System.out.println("-------------------------");
+    }
 
 }

@@ -46,6 +46,6 @@ public class MemberServiceImpl implements MemberService {
     // 조회 메서드에 왜 설정을 하느냐 하면 다른 서비스 메서드에서 호출될 경우 트랜잭션이 중첩될수 있기때문에 설정을 해줘야한다.
     @Transactional(readOnly = true)
     public Member getMember(String email) {
-        return null;
+        return memberRepository.findByEmail(email);
     }
 }

@@ -4,4 +4,6 @@ import com.daebaksong.myboard.domin.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
+    // query method
+    public Member findByEmail(String email);
 }
