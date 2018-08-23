@@ -1,5 +1,5 @@
 insert into member(id, name, email, passwd, regdate)
-    values(1, 'song', 'skj4522@gmail.com', '1234', now());
+    values(1, 'song', 'skj4522@gmail.com', '{bcrypt}$2a$10$0IKjNgE8fn.5oTSc4V0Cj.9NArYsSZYEZl7NVwV/cPP27dKDOGy76', now());
 
 insert into member_role(id, name, member_id) values (1, 'USER', 1);
 

@@ -23,8 +23,10 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public Board addBoard(Long memberId, Board board) {
-        return null;
+    public Board addBoard(String email, Board board) {
+        Member member = memberRepository.findByEmail(email);
+        board.setMember(member);
+        return boardRepository.save(board);
     }
 
     @Override

@@ -6,6 +6,6 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface BoardService {
-    public Board addBoard(Long memberId, Board board);
+    public Board addBoard(String email, Board board);
     public Page<Board> getBoard(int page);
 }
