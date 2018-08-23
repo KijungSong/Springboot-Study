@@ -39,5 +39,8 @@ public class MemberController {
         return "welcome";
     }
 
-
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
