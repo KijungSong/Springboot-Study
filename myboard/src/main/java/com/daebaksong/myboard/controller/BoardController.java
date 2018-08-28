@@ -28,8 +28,7 @@ public class BoardController {
     }
 
     @GetMapping("/writeform")
-    public String writeform(@AuthUser MemberLoginInfo memberLoginInfo, ModelMap modelMap) {
-        modelMap.addAttribute("memberLoginInfo", memberLoginInfo);
+    public String writeform(@AuthUser MemberLoginInfo memberLoginInfo) {
         System.out.println("--------------------");
         System.out.println(memberLoginInfo.getId());
         System.out.println(memberLoginInfo.getName());
