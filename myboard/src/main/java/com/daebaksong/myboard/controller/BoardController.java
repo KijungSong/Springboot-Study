@@ -20,8 +20,10 @@ public class BoardController {
     BoardService boardService;
 
     @GetMapping
-    public String boards(@RequestParam(name = "page", required = false, defaultValue = "1") int page, ModelMap modelMap) {
+    public String boards(@RequestParam(name = "page", required = false, defaultValue = "1") int page, ModelMap modelMap) throws IllegalAccessException {
 
+        if(1 == 1)
+            throw new IllegalAccessException("exception!!!");
         Page<Board> boardPage = boardService.getBoard(page);
         modelMap.addAttribute("list",boardPage);
         return "list";
