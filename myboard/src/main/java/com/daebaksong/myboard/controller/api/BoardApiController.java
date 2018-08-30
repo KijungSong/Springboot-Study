@@ -20,7 +20,10 @@ public class BoardApiController {
 
     @GetMapping
     ResponseEntity<Page<Board>> boards(
-        @RequestParam(name = "page", required = false, defaultValue = "1") int page){
+        @RequestParam(name = "page", required = false, defaultValue = "1") int page) throws IllegalAccessException {
+
+        if(1 == 1)
+            throw new IllegalAccessException("api exception!!!");
 
         Page<Board> boardPage = boardService.getBoard(page);
         return new ResponseEntity<>(boardPage, HttpStatus.OK);
