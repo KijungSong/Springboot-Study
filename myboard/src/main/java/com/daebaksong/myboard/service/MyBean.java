@@ -1,6 +1,8 @@
 package com.daebaksong.myboard.service;
 
 import com.daebaksong.ServerInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -12,14 +14,17 @@ public class MyBean {
     @Value("${name}")
     private String name;
 
+    private Logger logger =
+            LoggerFactory.getLogger(MyBean.class);
+
     @Autowired
     ServerInfo serverInfo;
 
     @PostConstruct
     public void printName(){
-        System.out.println("-----------------------");
-        System.out.println("name: " + name);
-        System.out.println("serverInfo: " + serverInfo);
-        System.out.println("-----------------------");
+        logger.info("-----------------------");
+        logger.info("name: " + name);
+        logger.info("serverInfo: " + serverInfo);
+        logger.info("-----------------------");
     }
 }
