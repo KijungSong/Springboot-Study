@@ -12,5 +12,15 @@ spring:
   h2:
     console:
       enabled: true
+name: kim
+---
+spring:
+  profiles: dev
+name: lee
+---
+spring:
+  profiles: real
+name: song
+
 #server:
 #  port: 9999
