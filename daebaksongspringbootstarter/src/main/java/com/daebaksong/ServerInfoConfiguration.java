@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 // 2. com.daebaksong.ServerInfo Bean을 생성하는 Java Config를 작성한다.
 @Configuration
 public class ServerInfoConfiguration {
+
     @Bean
+    @ConditionalOnMissingBean
     public ServerInfo serverInfo() {
         ServerInfo serverInfo = new ServerInfo();
         serverInfo.setAddress("1.1.1.2");
