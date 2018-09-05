@@ -1,5 +1,6 @@
 package com.daebaksong.myboard.domin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,13 +19,16 @@ public class Member {
     private Long id; // ID 자동생성
     private String name;
     private String email;
+    @JsonIgnore
     private String passwd;
     private LocalDateTime regdate;
 
+    @JsonIgnore
     // mappedBy = "member"를 설정안해주면 다:다 관계로 보고 매핑하는 테이블을 추가로 생성한다.
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<MemberRole> memberRoles = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private Set<Board> boards;
 
