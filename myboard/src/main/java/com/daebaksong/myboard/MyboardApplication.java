@@ -8,7 +8,14 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class MyboardApplication {
-    
+    @Bean
+    public ServerInfo serverInfo(){
+        ServerInfo serverInfo = new ServerInfo();
+        serverInfo.setAddress("localhost");
+        serverInfo.setPort(9999);
+        return serverInfo;
+    }
+
 	public static void main(String[] args) {
 		SpringApplication springApplication = new SpringApplication(MyboardApplication.class);
 		springApplication.addListeners(new StartListener());
